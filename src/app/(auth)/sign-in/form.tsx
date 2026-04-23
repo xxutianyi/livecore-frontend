@@ -1,10 +1,9 @@
 'use client';
 
 import { TextField } from '@/components/fields';
-import { Button } from '@/components/ui/button';
-import { Field, FieldDescription, FieldGroup, FieldSeparator } from '@/components/ui/field';
-import { toFormError } from '@/lib/validate';
-import { getProfile, login } from '@/service/requests';
+import { Button } from '@/components/shadcn/button';
+import { Field, FieldDescription, FieldGroup, FieldSeparator } from '@/components/shadcn/field';
+import { login, profileShow } from '@/service/api/auth';
 import { SiApple, SiWechat } from '@icons-pack/react-simple-icons';
 import { useForm } from '@tanstack/react-form';
 import Link from 'next/link';
@@ -16,21 +15,14 @@ const formSchema = z.object({
     password: z.string({ error: '请输入密码' }),
 });
 
-export function SignInForm({ redirectTo = '/' }: { redirectTo?: string }) {
+export function SignInForm({ redirectTo }: { redirectTo: string }) {
     const form = useForm({
-        canSubmitWhenInvalid: true,
         validators: {
             onSubmit: formSchema,
-            onSubmitAsync: async ({ value }) => {
-                try {
-                    return await login(value);
-                } catch (error) {
-                    return toFormError(error);
-                }
-            },
+            onSubmitAsync: ({ value }) => login(value),
         },
         onSubmit: async () => {
-            await getProfile();
+            await profileShow();
             redirect(redirectTo);
         },
     });
@@ -54,7 +46,7 @@ export function SignInForm({ redirectTo = '/' }: { redirectTo?: string }) {
                     {(fieldApi) => <TextField label="账号" fieldApi={fieldApi} />}
                 </form.Field>
                 <form.Field name="password">
-                    {(fieldApi) => <TextField label="密码" fieldApi={fieldApi} />}
+                    {(fieldApi) => <TextField type="password" label="密码" fieldApi={fieldApi} />}
                 </form.Field>
 
                 <Field>

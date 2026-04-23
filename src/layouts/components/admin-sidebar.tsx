@@ -1,5 +1,5 @@
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from '@/components/shadcn/sidebar';
 import { ThemeToggle } from '@/components/theme';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from '@/components/ui/sidebar';
 import { RouteItemGroup } from '@/constant/routes';
 import configs from '@/lib/configs';
 import { AdminSidebarMenu } from './admin-sidebar-menu';

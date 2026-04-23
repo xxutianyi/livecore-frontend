@@ -1,14 +1,19 @@
 'use client';
 
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/shadcn/avatar';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
+} from '@/components/shadcn/dropdown-menu';
+import {
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+    useSidebar,
+} from '@/components/shadcn/sidebar';
 import { SharedProps } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { ChevronsUpDownIcon, LogOutIcon, Settings, User } from 'lucide-react';
@@ -35,7 +40,11 @@ export function AdminUserNav() {
                             <ChevronsUpDownIcon className="ml-auto size-4" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent side={isMobile ? 'bottom' : 'right'} align="end" sideOffset={4}>
+                    <DropdownMenuContent
+                        side={isMobile ? 'bottom' : 'right'}
+                        align="end"
+                        sideOffset={4}
+                    >
                         <DropdownMenuItem asChild>
                             <Link href="/profile">
                                 <Settings />

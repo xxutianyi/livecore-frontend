@@ -1,5 +1,5 @@
-import { Separator } from '@/components/ui/separator';
-import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Separator } from '@/components/shadcn/separator';
+import { SidebarTrigger } from '@/components/shadcn/sidebar';
 
 import { Breadcrumb } from '@/components/winglab/breadcrumb';
 import { RouteItemGroup } from '@/constant/routes';

@@ -1,4 +1,8 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from '@/components/shadcn/collapsible';
 import {
     SidebarGroup,
     SidebarGroupLabel,
@@ -7,7 +11,7 @@ import {
     SidebarMenuSub,
     SidebarMenuSubButton,
     SidebarMenuSubItem,
-} from '@/components/ui/sidebar';
+} from '@/components/shadcn/sidebar';
 import { RouteItemGroup } from '@/constant/routes';
 import { Link } from '@inertiajs/react';
 import { ChevronRight } from 'lucide-react';
@@ -19,7 +23,11 @@ export function AdminSidebarMenu({ menu }: { menu: RouteItemGroup[] }) {
             {group.items?.map((item, index) => {
                 if (item.children && item.children?.length > 0) {
                     return (
-                        <Collapsible key={index} className="group/collapsible" defaultOpen={item.isActive}>
+                        <Collapsible
+                            key={index}
+                            className="group/collapsible"
+                            defaultOpen={item.isActive}
+                        >
                             <SidebarMenuItem>
                                 <CollapsibleTrigger asChild>
                                     <SidebarMenuButton isActive={item.isActive}>
@@ -32,9 +40,15 @@ export function AdminSidebarMenu({ menu }: { menu: RouteItemGroup[] }) {
                                     <SidebarMenuSub>
                                         {item.children.map((childItem, i) => (
                                             <SidebarMenuSubItem key={i}>
-                                                <SidebarMenuSubButton asChild isActive={childItem.isActive}>
+                                                <SidebarMenuSubButton
+                                                    asChild
+                                                    isActive={childItem.isActive}
+                                                >
                                                     {childItem.external ? (
-                                                        <a href={childItem.href ?? ''} target="_blank">
+                                                        <a
+                                                            href={childItem.href ?? ''}
+                                                            target="_blank"
+                                                        >
                                                             <span>{childItem.title}</span>
                                                         </a>
                                                     ) : (

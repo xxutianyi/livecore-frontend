@@ -1,17 +1,25 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import { Moon, Sun } from 'lucide-react'
-import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes'
-import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Button } from '@/components/shadcn/button';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/shadcn/dropdown-menu';
+import { Moon, Sun } from 'lucide-react';
+import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
+import * as React from 'react';
 
-export function ThemeProvider({ children, ...props }: React.ComponentProps<typeof NextThemesProvider>) {
-    return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+export function ThemeProvider({
+    children,
+    ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+    return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
 
 export function ThemeToggle() {
-    const { setTheme } = useTheme()
+    const { setTheme } = useTheme();
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -27,5 +35,5 @@ export function ThemeToggle() {
                 <DropdownMenuItem onClick={() => setTheme('system')}>跟随系统</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
-    )
+    );
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import { ScrollArea } from '@/components/shadcn/scroll-area';
+import { SidebarInset, SidebarProvider } from '@/components/shadcn/sidebar';
 import routes from '@/constant/routes';
 import { useRoutes } from '@/hooks/use-routes';
 import { PropsWithChildren } from 'react';

@@ -1,3 +1,5 @@
+'use client';
+
 import { LiveMessage, User } from '@/service/model';
 import { useEchoPresence } from '@laravel/echo-react';
 import { useEffect, useState } from 'react';

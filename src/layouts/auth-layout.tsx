@@ -1,5 +1,5 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { FieldDescription } from '@/components/ui/field';
+import { Card, CardContent } from '@/components/shadcn/card';
+import { FieldDescription } from '@/components/shadcn/field';
 import configs from '@/lib/configs';
 import { PropsWithChildren } from 'react';
 
@@ -22,7 +22,8 @@ export function AuthLayout({ children }: PropsWithChildren) {
                         </CardContent>
                     </Card>
                     <FieldDescription className="px-6 text-center">
-                        继续登录/注册即表示您已阅读并同意 <a href="#">服务协议</a> 和 <a href="#">隐私政策</a>.
+                        继续登录/注册即表示您已阅读并同意 <a href="#">服务协议</a> 和{' '}
+                        <a href="#">隐私政策</a>.
                     </FieldDescription>
                 </div>
             </div>

@@ -1,5 +1,6 @@
+'use client';
+
 import { LiveMessage, User } from '@/service/model';
-import { router } from '@inertiajs/react';
 import { useEchoPresence } from '@laravel/echo-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -25,7 +26,7 @@ export function useLive(eventId?: string, initMessages: LiveMessage[] = []) {
     }
 
     function handleChannelError(error: any) {
-        console.error(`Channel Error: ${channelId}`, error);
+        console.log(`Channel Error: ${channelId}`, error);
         toast.error('互动功能连接失败');
     }
 
@@ -38,7 +39,7 @@ export function useLive(eventId?: string, initMessages: LiveMessage[] = []) {
 
     function handleStreamingStop() {
         toast.info('直播已结束，即将为您刷新页面');
-        router.reload();
+        window.location.reload();
     }
 
     function setChannelListener() {
