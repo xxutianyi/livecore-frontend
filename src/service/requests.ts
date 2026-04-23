@@ -1,4 +1,5 @@
 import { axios, unpack } from '@/lib/axios';
+import { ApiResponse } from '@/service/response';
 
 export async function login(data: unknown) {
     await axios.get('/api/csrf-cookie');
@@ -6,5 +7,5 @@ export async function login(data: unknown) {
 }
 
 export async function getProfile() {
-    return unpack(axios.get('/api/profile'));
+    return unpack(axios.get<ApiResponse<{ name: string }>>('/api/profile'));
 }

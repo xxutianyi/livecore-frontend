@@ -1,5 +1,9 @@
 import { SignInForm } from '@/app/(auth)/sign-in/form';
 
-export default function SignInPage() {
-    return <SignInForm />;
+type SearchParams = Promise<{ redirect?: string }>;
+
+export default async function SignInPage({ searchParams }: { searchParams: SearchParams }) {
+    const { redirect } = await searchParams;
+
+    return <SignInForm redirectTo={redirect} />;
 }

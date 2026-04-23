@@ -16,11 +16,9 @@ axios.interceptors.request.use(
             const { cookies } = await import('next/headers');
             const cookieStore = await cookies();
 
-            request.headers.set('Cookie', cookieStore.toString().trim().replace(/\s+/g, ''));
-            request.headers.set(
-                'X-XSRF-TOKEN',
-                cookieStore.get('XSRF-TOKEN')?.value.trim().replace(/\s+/g, ''),
-            );
+            request.headers.set('Cookie', cookieStore.toString());
+            request.headers.set('Origin', process.env.NEXT_PUBLIC_URL);
+            request.headers.set('X-XSRF-TOKEN', cookieStore.get('XSRF-TOKEN')?.value);
         }
 
         return request;

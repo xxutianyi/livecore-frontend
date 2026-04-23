@@ -8,6 +8,7 @@ import { getProfile, login } from '@/service/requests';
 import { SiApple, SiWechat } from '@icons-pack/react-simple-icons';
 import { useForm } from '@tanstack/react-form';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -15,9 +16,7 @@ const formSchema = z.object({
     password: z.string({ error: '请输入密码' }),
 });
 
-export function SignInForm() {
-    getProfile();
-
+export function SignInForm({ redirectTo = '/' }: { redirectTo?: string }) {
     const form = useForm({
         canSubmitWhenInvalid: true,
         validators: {
@@ -30,8 +29,9 @@ export function SignInForm() {
                 }
             },
         },
-        onSubmit: async ({ value }) => {
-            console.log(value);
+        onSubmit: async () => {
+            await getProfile();
+            redirect(redirectTo);
         },
     });
 
