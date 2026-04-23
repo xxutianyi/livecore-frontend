@@ -13,7 +13,7 @@ import { LogIn, User } from 'lucide-react';
 import Link from 'next/link';
 
 export function WebsiteUserAction() {
-    const user = useUserContext();
+    const userContext = useUserContext();
 
     function handleLogout() {
         logout().then(() => {
@@ -21,7 +21,7 @@ export function WebsiteUserAction() {
         });
     }
 
-    if (!user) {
+    if (!userContext || !userContext.user) {
         return (
             <Button size="lg" asChild>
                 <Link href="/sign-in">
@@ -37,7 +37,7 @@ export function WebsiteUserAction() {
             <DropdownMenuTrigger asChild>
                 <Button size="lg">
                     <User />
-                    <span>{user.name}</span>
+                    <span>{userContext?.user?.name}</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

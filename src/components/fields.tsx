@@ -1,41 +1,42 @@
+'use client';
+
 import { Field, FieldError, FieldLabel } from '@/components/shadcn/field';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/shadcn/input-group';
-import { AnyFieldApi, useStore } from '@tanstack/react-form';
-import { Loader2 } from 'lucide-react';
+import { Input } from '@/components/shadcn/input';
+import { useForm } from '@/components/winglab/form/use-form';
 import { ComponentProps } from 'react';
 
 type BaseFieldProps = {
+    name: string;
     label?: string;
     placeholder?: string;
-    fieldApi: AnyFieldApi;
+    defaultValue?: string;
+    formApi: ReturnType<typeof useForm>;
 };
 
 type TextFieldProps = BaseFieldProps & ComponentProps<'input'>;
 
-export function TextField({ label, placeholder, fieldApi, ...props }: TextFieldProps) {
-    const errors = useStore(fieldApi.store, (state) => state.meta.errors);
-
+export function TextField({
+    name,
+    label,
+    defaultValue,
+    placeholder,
+    formApi,
+    ...props
+}: TextFieldProps) {
     return (
         <Field>
-            <FieldLabel htmlFor={fieldApi.name}>{label}</FieldLabel>
-            <InputGroup>
-                <InputGroupInput
-                    aria-label={label}
-                    id={fieldApi.name}
-                    name={fieldApi.name}
-                    value={fieldApi.state.value}
-                    defaultValue={fieldApi.state.value}
-                    onChange={(e) => fieldApi.setValue(e.target.value)}
-                    placeholder={placeholder ?? '请输入'}
-                    {...props}
-                />
-                {fieldApi.getMeta().isValidating && (
-                    <InputGroupAddon align="inline-end">
-                        <Loader2 className="animate-spin" />
-                    </InputGroupAddon>
-                )}
-            </InputGroup>
-            {fieldApi.state.meta.errors && <FieldError errors={fieldApi.state.meta.errors} />}
+            <FieldLabel htmlFor={name}>{label}</FieldLabel>
+            <Input
+                aria-label={label}
+                id={name}
+                name={name}
+                value={formApi.getFieldValue(name)}
+                defaultValue={defaultValue}
+                onChange={(e) => formApi.setFieldValue(name, e.target.value)}
+                placeholder={placeholder ?? '请输入'}
+                {...props}
+            />
+            {formApi.getFieldError(name) && <FieldError errors={formApi.getFieldError(name)} />}
         </Field>
     );
 }

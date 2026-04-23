@@ -6,12 +6,13 @@ import { useUserContext } from '@/components/provider/user-provider';
 import { Button } from '@/components/shadcn/button';
 import { FieldGroup } from '@/components/shadcn/field';
 import { Separator } from '@/components/shadcn/separator';
+import { useForm } from '@/components/winglab/form/use-form';
 import { cn } from '@/lib/utils';
-import { profileUpdate } from '@/service/api/auth';
-import { useForm } from '@tanstack/react-form';
+import { passwordUpdate, profileUpdate } from '@/service/api/auth';
 import { Lock, User } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { z } from 'zod';
+import { toast } from 'sonner';
 
 export function ProfileForm() {
     const [section, setSection] = useState<'account' | 'password'>('account');
@@ -46,62 +47,75 @@ export function ProfileForm() {
                     <Lock /> 修改密码
                 </Button>
             </nav>
-            <div className="w-full">{section === 'account' && <UpdateProfile />}</div>
+            <div className="w-full">
+                {section === 'account' && <UpdateProfile />}
+                {section === 'password' && <UpdatePassword />}
+            </div>
         </div>
     );
 }
 
-const profileSchema = z.object({
-    name: z.string({ error: '请输入名字' }),
-    phone: z.string({ error: '请输入手机号' }).nullable(),
-    email: z.email({ error: '请输入有效邮箱' }).nullable(),
-});
-
 export function UpdateProfile() {
-    const user = useUserContext();
+    const router = useRouter();
+    const userContext = useUserContext();
+
     const form = useForm({
-        defaultValues: {
-            name: user?.name,
-            phone: user?.phone ?? null,
-            email: user?.email ?? null,
-        },
-        validators: {
-            onSubmit: profileSchema,
-            onSubmitAsync: ({ value }) => profileUpdate(value),
+        initialValues: userContext?.user,
+        onSubmit: async (values) => {
+            try {
+                const user = await profileUpdate(values);
+                userContext?.setUser(user);
+                toast.success('保存成功');
+                router.refresh();
+            } catch (errors: any) {
+                form.setFormErrors(errors);
+            }
         },
     });
 
     return (
         <Section title="基本信息">
             <Separator />
-            <form
-                className="w-full max-w-lg space-y-6"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    form.handleSubmit();
-                }}
-            >
+            <form className="w-full max-w-lg space-y-6" onSubmit={(e) => form.handleSubmit(e)}>
                 <FieldGroup>
-                    <form.Field name="name">
-                        {(fieldApi) => <TextField label="名字" fieldApi={fieldApi} />}
-                    </form.Field>
-                    <form.Field name="phone">
-                        {(fieldApi) => <TextField label="手机号" fieldApi={fieldApi} />}
-                    </form.Field>
-                    <form.Field name="email">
-                        {(fieldApi) => (
-                            <TextField type="email" label="电子邮箱" fieldApi={fieldApi} />
-                        )}
-                    </form.Field>
+                    <TextField name="name" label="名字" formApi={form} />
+                    <TextField name="phone" label="手机号" formApi={form} />
+                    <TextField name="email" label="电子邮箱" formApi={form} />
                 </FieldGroup>
 
-                <form.Subscribe selector={(state) => state.canSubmit}>
-                    {(canSubmit) => (
-                        <Button type="submit" size="lg" disabled={!canSubmit}>
-                            保存修改
-                        </Button>
-                    )}
-                </form.Subscribe>
+                <Button type="submit" size="lg">
+                    保存修改
+                </Button>
+            </form>
+        </Section>
+    );
+}
+
+export function UpdatePassword() {
+    const form = useForm({
+        onSubmit: async (values) => {
+            try {
+                await passwordUpdate(values);
+                toast.success('保存成功');
+            } catch (errors: any) {
+                form.setFormErrors(errors);
+            }
+        },
+    });
+
+    return (
+        <Section title="基本信息">
+            <Separator />
+            <form className="w-full max-w-lg space-y-6" onSubmit={form.handleSubmit}>
+                <FieldGroup>
+                    <TextField name="current_password" label="当前密码" formApi={form} />
+                    <TextField name="password" label="新密码" formApi={form} />
+                    <TextField name="password_confirmation" label="再次输入新密码" formApi={form} />
+                </FieldGroup>
+
+                <Button type="submit" size="lg">
+                    保存修改
+                </Button>
             </form>
         </Section>
     );

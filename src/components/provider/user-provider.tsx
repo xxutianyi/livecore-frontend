@@ -5,7 +5,9 @@ import { User } from '@/service/model';
 import { usePathname } from 'next/navigation';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-const UserContext = createContext<User | null>(null);
+type UserContextType = { user?: User; setUser: (user?: User) => void };
+
+const UserContext = createContext<UserContextType | null>(null);
 
 export function UserProvider({ initialUser, children }: PropsWithChildren<{ initialUser?: User }>) {
     const pathname = usePathname();
@@ -15,7 +17,7 @@ export function UserProvider({ initialUser, children }: PropsWithChildren<{ init
         profileShow().then(setUser);
     }, [pathname]);
 
-    return <UserContext.Provider value={user ?? null}>{children}</UserContext.Provider>;
+    return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 }
 
 export const useUserContext = () => useContext(UserContext);

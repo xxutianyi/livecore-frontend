@@ -1,6 +1,6 @@
-import { toFormError } from '@/lib/validate';
 import { ApiResponse } from '@/service/response';
 import { default as Axios, AxiosResponse } from 'axios';
+import { toast } from 'sonner';
 
 const axios = Axios.create();
 
@@ -56,9 +56,13 @@ async function unpack<TData>(request: Promise<AxiosResponse<ApiResponse<TData>>>
             console.log('Server call api Error: ', error);
         } else {
             console.log('Client call api error: ', error);
-        }
-        if (error.code === 4003 && error.errors) {
-            throw toFormError(error);
+
+            if (error.code === 4003 && error.errors) {
+                throw error.errors;
+            }
+            if (![4001, 4002].includes(error.code)) {
+                toast.error(error.message);
+            }
         }
         return undefined;
     }

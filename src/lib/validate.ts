@@ -6,5 +6,5 @@ export function toFormError(error: any) {
     Object.entries(errors).forEach(([field, errors]) => {
         fieldErrors[field] = errors.map((message) => ({ message }));
     });
-    return { fields: fieldErrors };
+    return fieldErrors;
 }

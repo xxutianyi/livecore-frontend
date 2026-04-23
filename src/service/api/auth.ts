@@ -3,7 +3,7 @@ import { User } from '@/service/model';
 
 export async function login(data: unknown) {
     await axios.get('/api/csrf-cookie');
-    return unpack(axios.post('/api/login', data));
+    return unpack<User>(axios.post('/api/login', data));
 }
 
 export async function logout() {

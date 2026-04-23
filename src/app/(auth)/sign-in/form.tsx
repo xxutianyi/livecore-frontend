@@ -1,40 +1,33 @@
 'use client';
 
 import { TextField } from '@/components/fields';
+import { useUserContext } from '@/components/provider/user-provider';
 import { Button } from '@/components/shadcn/button';
 import { Field, FieldDescription, FieldGroup, FieldSeparator } from '@/components/shadcn/field';
-import { login, profileShow } from '@/service/api/auth';
+import { useForm } from '@/components/winglab/form/use-form';
+import { login } from '@/service/api/auth';
 import { SiApple, SiWechat } from '@icons-pack/react-simple-icons';
-import { useForm } from '@tanstack/react-form';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { z } from 'zod';
-
-const formSchema = z.object({
-    username: z.string({ error: '请输入账号' }),
-    password: z.string({ error: '请输入密码' }),
-});
+import { useRouter } from 'next/navigation';
 
 export function SignInForm({ redirectTo }: { redirectTo: string }) {
+    const router = useRouter();
+    const userContext = useUserContext();
+
     const form = useForm({
-        validators: {
-            onSubmit: formSchema,
-            onSubmitAsync: ({ value }) => login(value),
-        },
-        onSubmit: async () => {
-            await profileShow();
-            redirect(redirectTo);
+        onSubmit: async (values) => {
+            try {
+                const user = await login(values);
+                userContext?.setUser(user);
+                router.push(redirectTo);
+            } catch (errors: any) {
+                form.setFormErrors(errors);
+            }
         },
     });
 
     return (
-        <form
-            className="p-6 md:p-8"
-            onSubmit={(e) => {
-                e.preventDefault();
-                form.handleSubmit();
-            }}
-        >
+        <form className="p-6 md:p-8" onSubmit={form.handleSubmit}>
             <FieldGroup>
                 <div className="flex flex-col items-center gap-2 text-center">
                     <h1 className="text-2xl font-bold">登录账号</h1>
@@ -42,21 +35,12 @@ export function SignInForm({ redirectTo }: { redirectTo: string }) {
                         使用用户名/邮箱/手机号登录
                     </p>
                 </div>
-                <form.Field name="username">
-                    {(fieldApi) => <TextField label="账号" fieldApi={fieldApi} />}
-                </form.Field>
-                <form.Field name="password">
-                    {(fieldApi) => <TextField type="password" label="密码" fieldApi={fieldApi} />}
-                </form.Field>
+
+                <TextField name="username" label="账号" formApi={form} />
+                <TextField name="password" label="密码" formApi={form} />
 
                 <Field>
-                    <form.Subscribe selector={(state) => state.canSubmit}>
-                        {(canSubmit) => (
-                            <Button type="submit" disabled={!canSubmit}>
-                                登录
-                            </Button>
-                        )}
-                    </form.Subscribe>
+                    <Button type="submit">登录</Button>
                 </Field>
                 <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                     其他登录方式
