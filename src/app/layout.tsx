@@ -3,7 +3,6 @@ import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { fontMono, fontSans } from '@/fonts/font';
 import { cn } from '@/lib/utils';
-import { getProfile } from '@/service/requests';
 import { Metadata } from 'next';
 import { PropsWithChildren } from 'react';
 import './globals.css';
@@ -17,12 +16,19 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
-    getProfile();
-
     return (
-        <html lang="zh" suppressHydrationWarning className={cn(fontSans.variable, fontMono.variable)}>
+        <html
+            lang="zh"
+            suppressHydrationWarning
+            className={cn(fontSans.variable, fontMono.variable)}
+        >
             <body className="flex min-h-full flex-col">
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
                     <TooltipProvider>
                         {children}
                         <Toaster position="top-right" />

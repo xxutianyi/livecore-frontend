@@ -14,7 +14,13 @@ axios.interceptors.request.use(
     async (request) => {
         if (typeof window === 'undefined') {
             const { cookies } = await import('next/headers');
-            request.headers.cookies = (await cookies()).toString();
+            const cookieStore = await cookies();
+
+            request.headers.set('Cookie', cookieStore.toString().trim().replace(/\s+/g, ''));
+            request.headers.set(
+                'X-XSRF-TOKEN',
+                cookieStore.get('XSRF-TOKEN')?.value.trim().replace(/\s+/g, ''),
+            );
         }
 
         return request;
@@ -48,9 +54,9 @@ async function unpack<TData>(request: Promise<AxiosResponse<ApiResponse<TData>>>
         return (await request).data?.data;
     } catch (error) {
         if (typeof window === 'undefined') {
-            console.error('Server Call Axios Error: ', error);
+            console.error('Server call api Error: ', error);
         } else {
-            console.error('Client Call Axios Error: ', error);
+            console.error('Client call api error: ', error);
         }
         throw error;
     }

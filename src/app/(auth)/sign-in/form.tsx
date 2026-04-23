@@ -4,7 +4,7 @@ import { TextField } from '@/components/fields';
 import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldGroup, FieldSeparator } from '@/components/ui/field';
 import { toFormError } from '@/lib/validate';
-import { login } from '@/service/requests';
+import { getProfile, login } from '@/service/requests';
 import { SiApple, SiWechat } from '@icons-pack/react-simple-icons';
 import { useForm } from '@tanstack/react-form';
 import Link from 'next/link';
@@ -16,6 +16,8 @@ const formSchema = z.object({
 });
 
 export function SignInForm() {
+    getProfile();
+
     const form = useForm({
         canSubmitWhenInvalid: true,
         validators: {
