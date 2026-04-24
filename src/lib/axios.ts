@@ -12,60 +12,60 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 
 axios.interceptors.request.use(
-    async (request) => {
-        if (typeof window === 'undefined') {
-            const { cookies } = await import('next/headers');
-            const cookieStore = await cookies();
+  async (request) => {
+    if (typeof window === 'undefined') {
+      const { cookies } = await import('next/headers');
+      const cookieStore = await cookies();
 
-            request.headers.set('Cookie', cookieStore.toString());
-            request.headers.set('Origin', process.env.NEXT_PUBLIC_URL);
-            request.headers.set('X-XSRF-TOKEN', cookieStore.get('XSRF-TOKEN')?.value);
-        }
+      request.headers.set('Cookie', cookieStore.toString());
+      request.headers.set('Origin', process.env.NEXT_PUBLIC_URL);
+      request.headers.set('X-XSRF-TOKEN', cookieStore.get('XSRF-TOKEN')?.value);
+    }
 
-        return request;
-    },
-    async (error) => {
-        return error;
-    },
+    return request;
+  },
+  async (error) => {
+    return error;
+  }
 );
 
 axios.interceptors.response.use(
-    (response) => {
-        if (!response.data) {
-            return response;
-        }
+  (response) => {
+    if (!response.data) {
+      return response;
+    }
 
-        const { code, message, errors } = response.data as ApiResponse;
+    const { code, message, errors } = response.data as ApiResponse;
 
-        if (code && code !== 0) {
-            throw { code, message, errors };
-        }
+    if (code && code !== 0) {
+      throw { code, message, errors };
+    }
 
-        return response;
-    },
-    (error) => {
-        return error;
-    },
+    return response;
+  },
+  (error) => {
+    return error;
+  }
 );
 
 async function unpack<TData>(request: Promise<AxiosResponse<ApiResponse<TData>>>) {
-    try {
-        return (await request).data?.data;
-    } catch (error: any) {
-        if (typeof window === 'undefined') {
-            console.log('Server call api Error: ', error);
-        } else {
-            console.log('Client call api error: ', error);
+  try {
+    return (await request).data?.data;
+  } catch (error: any) {
+    if (typeof window === 'undefined') {
+      console.log('Server call api Error: ', error);
+    } else {
+      console.log('Client call api error: ', error);
 
-            if (error.code === 4003 && error.errors) {
-                throw error.errors;
-            }
-            if (![4001, 4002].includes(error.code)) {
-                toast.error(error.message);
-            }
-        }
-        return undefined;
+      if (error.code === 4003 && error.errors) {
+        throw error.errors;
+      }
+      if (![4001, 4002].includes(error.code)) {
+        toast.error(error.message);
+      }
     }
+    return undefined;
+  }
 }
 
 export { axios, unpack };

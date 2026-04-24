@@ -10,14 +10,14 @@ type UserContextType = { user?: User; setUser: (user?: User) => void };
 const UserContext = createContext<UserContextType | null>(null);
 
 export function UserProvider({ initialUser, children }: PropsWithChildren<{ initialUser?: User }>) {
-    const pathname = usePathname();
-    const [user, setUser] = useState<User | undefined>(initialUser);
+  const pathname = usePathname();
+  const [user, setUser] = useState<User | undefined>(initialUser);
 
-    useEffect(() => {
-        profileShow().then(setUser);
-    }, [pathname]);
+  useEffect(() => {
+    profileShow().then(setUser);
+  }, [pathname]);
 
-    return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 }
 
 export const useUserContext = () => useContext(UserContext);

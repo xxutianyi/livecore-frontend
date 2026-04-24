@@ -1,3 +1,1 @@
-export default function StreamingRoomPage(){
-
-}
+export default function StreamingRoomPage() {}

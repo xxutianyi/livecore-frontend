@@ -3,5 +3,5 @@
 import { AppProgressProvider, AppProgressProviderProps } from '@bprogress/next';
 
 export function ProgressProvider({ children, ...props }: AppProgressProviderProps) {
-    return <AppProgressProvider {...props}>{children}</AppProgressProvider>;
+  return <AppProgressProvider {...props}>{children}</AppProgressProvider>;
 }
