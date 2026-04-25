@@ -1,8 +1,8 @@
 {
   "version": "v1",
   "packages": {
-    "@winglab/react-table": {
-      "signature": "ad01890dc9c2733f067cb57185a9db0a",
+    "@winglab/react-form": {
+      "signature": "a970e3b5b57b990e7273c7af585134ad",
       "file": true
     }
   }

@@ -1,11 +1,4 @@
-import {
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-  Breadcrumb as BreadcrumbUI,
-} from '@/components/shadcn/breadcrumb';
+import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, Breadcrumb as BreadcrumbUI } from '@/components/ui/breadcrumb';
 import { cn } from '@/lib/utils';
 
 import Link from 'next/link';
@@ -34,10 +27,7 @@ export function Breadcrumb({ items, className }: { items: ItemType[]; className?
           return (
             <Fragment key={index}>
               <BreadcrumbItem>
-                <BreadcrumbLink
-                  asChild={!!item.link}
-                  className={item.link ?? 'pointer-events-none'}
-                >
+                <BreadcrumbLink asChild={!!item.link} className={item.link ?? 'pointer-events-none'}>
                   {item.link ? <Link href={item.link}>{item.label}</Link> : item.label}
                 </BreadcrumbLink>
               </BreadcrumbItem>

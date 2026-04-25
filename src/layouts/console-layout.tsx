@@ -1,15 +1,16 @@
 'use client';
 
+import { useAuth } from '@/components/provider/auth-provider';
 import { ThemeToggle } from '@/components/provider/theme-provider';
-import { useUserContext } from '@/components/provider/user-provider';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/shadcn/avatar';
+import { SidebarMenu as SideMenu } from '@/components/sidebar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/shadcn/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -21,8 +22,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   useSidebar,
-} from '@/components/shadcn/sidebar';
-import { SidebarMenu as SideMenu } from '@/components/sidebar';
+} from '@/components/ui/sidebar';
 import routes from '@/constant/routes';
 import { useRoutes } from '@/hooks/use-routes';
 import configs from '@/lib/configs';
@@ -32,8 +32,8 @@ import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
 export function UserActions() {
+  const auth = useAuth();
   const { isMobile } = useSidebar();
-  const userContext = useUserContext();
 
   function handleLogout() {
     logout().then(() => {
@@ -57,7 +57,7 @@ export function UserActions() {
                 <AvatarImage alt="avatar" />
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{userContext?.user?.name}</span>
+                <span className="truncate font-medium">{auth?.data?.name}</span>
               </div>
               <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>

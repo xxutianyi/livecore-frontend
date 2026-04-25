@@ -1,15 +1,15 @@
 'use client';
 
+import { useAuth } from '@/components/provider/auth-provider';
 import { ThemeToggle } from '@/components/provider/theme-provider';
-import { useUserContext } from '@/components/provider/user-provider';
-import { Button } from '@/components/shadcn/button';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/shadcn/dropdown-menu';
-import { ScrollArea } from '@/components/shadcn/scroll-area';
+} from '@/components/ui/dropdown-menu';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import configs from '@/lib/configs';
 import { logout } from '@/service/api/auth';
 import { LogIn, User } from 'lucide-react';
@@ -17,9 +17,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
-
 export function UserAction() {
-  const userContext = useUserContext();
+  const auth = useAuth();
 
   function handleLogout() {
     logout().then(() => {
@@ -27,7 +26,7 @@ export function UserAction() {
     });
   }
 
-  if (!userContext || !userContext.user) {
+  if (!auth || !auth.data) {
     return (
       <Button size="lg" asChild>
         <Link href="/sign-in">
@@ -42,7 +41,7 @@ export function UserAction() {
       <DropdownMenuTrigger asChild>
         <Button size="lg">
           <User />
-          <span>{userContext?.user?.name}</span>
+          <span>{auth?.data?.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -70,9 +69,7 @@ export function WebsiteLayout({ children }: PropsWithChildren) {
           <ThemeToggle />
         </div>
       </div>
-      <ScrollArea className="h-[calc(100svh-64px)] overflow-hidden bg-muted/20 p-4 md:p-8">
-        {children}
-      </ScrollArea>
+      <ScrollArea className="h-[calc(100svh-64px)] overflow-hidden bg-muted/20 p-4 md:p-8">{children}</ScrollArea>
     </>
   );
 }

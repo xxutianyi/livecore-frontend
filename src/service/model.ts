@@ -19,13 +19,13 @@ export interface User extends Model {
   phone?: string;
   email_verified_at?: string;
   phone_verified_at?: string;
-  authorities: string[];
-  external_id?: string;
-  inviter_code: string;
-  invitation_code?: string;
+  groups?: UserGroup[];
+  onlines?: UserOnline[];
+  messages?: LiveMessage[];
   online?: boolean;
   leaving_at?: string;
-  groups?: UserGroup[];
+  inviter_code: string;
+  invitation_code?: string;
 }
 
 export interface UserOnline extends Model {

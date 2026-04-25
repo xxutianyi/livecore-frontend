@@ -43,3 +43,6 @@ next-env.d.ts
 # editor
 .idea
 .vscode
+
+# yalc
+.yalc

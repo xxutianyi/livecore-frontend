@@ -1,7 +1,7 @@
 'use client';
 
 import { VideoPlayer } from '@/components/player';
-import { Card } from '@/components/shadcn/card';
+import { Card } from '@/components/ui/card';
 import useOnline from '@/hooks/use-online';
 import { LiveEvent, LiveMessage, LiveRoom } from '@/service/model';
 import { Video } from 'lucide-react';

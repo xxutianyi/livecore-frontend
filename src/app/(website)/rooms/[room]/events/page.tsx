@@ -1,6 +1,6 @@
-import { Empty, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/shadcn/empty';
+import { Breadcrumb } from '@/components/breadcrumb';
+import { Empty, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
 import { EventCardList } from '@/components/watch';
-import { Breadcrumb } from '@/components/winglab/layout/breadcrumb';
 import { eventsIndex, roomsShow } from '@/service/api/watch';
 import { Info } from 'lucide-react';
 import { Metadata } from 'next';

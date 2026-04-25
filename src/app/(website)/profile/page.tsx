@@ -1,6 +1,6 @@
 import { ProfileForm } from '@/app/(website)/profile/form';
 import { PageContent } from '@/components/container';
-import { Separator } from '@/components/shadcn/separator';
+import { Separator } from '@/components/ui/separator';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

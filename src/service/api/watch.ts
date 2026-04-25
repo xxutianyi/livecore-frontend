@@ -1,13 +1,12 @@
 import { axios, unpack } from '@/lib/axios';
 import { LiveEvent, LiveMessage, LiveRoom } from '@/service/model';
-import { ApiResponse } from '@/service/response';
 
 export async function roomsIndex() {
-  return unpack(axios.get<ApiResponse<LiveRoom[]>>('/api/rooms'));
+  return unpack<LiveRoom[]>(axios.get('/api/rooms'));
 }
 
 export async function roomsShow(roomId: string) {
-  return unpack(axios.get<ApiResponse<LiveRoom>>(`/api/rooms/${roomId}`));
+  return unpack<LiveRoom>(axios.get(`/api/rooms/${roomId}`));
 }
 
 export async function eventsIndex(roomId: string) {

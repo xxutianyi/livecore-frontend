@@ -21,6 +21,8 @@ export async function proxy(request: NextRequest) {
   } catch (error: any) {
     console.error(error);
   }
+
+  return NextResponse.next();
 }
 
 export const config: ProxyConfig = {

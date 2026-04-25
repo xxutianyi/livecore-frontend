@@ -1,4 +1,4 @@
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/shadcn/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import { PropsWithChildren } from 'react';
 
@@ -16,9 +16,7 @@ export function DescriptionItem({ label, ellipsis, className, children }: Descri
 
       {ellipsis ? (
         <Tooltip>
-          <TooltipTrigger className="overflow-hidden text-ellipsis whitespace-nowrap">
-            {children ?? '-'}
-          </TooltipTrigger>
+          <TooltipTrigger className="overflow-hidden text-ellipsis whitespace-nowrap">{children ?? '-'}</TooltipTrigger>
           <TooltipContent className="break-all">{children ?? '-'}</TooltipContent>
         </Tooltip>
       ) : (

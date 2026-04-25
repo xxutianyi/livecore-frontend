@@ -1,5 +1,5 @@
+import { Breadcrumb } from '@/components/breadcrumb';
 import { RoomCardList } from '@/components/watch';
-import { Breadcrumb } from '@/components/winglab/layout/breadcrumb';
 import { roomsIndex } from '@/service/api/watch';
 
 export default async function RoomsPage() {

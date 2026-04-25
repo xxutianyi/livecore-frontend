@@ -1,13 +1,13 @@
 'use client';
 
-import { useUserContext } from '@/components/provider/user-provider';
+import { useAuth } from '@/components/provider/auth-provider';
 import { RouteItemGroup } from '@/constant/routes';
 import { usePathname } from 'next/navigation';
 
 export function useRoutes(routes: RouteItemGroup[]): RouteItemGroup[] {
   const pathname = usePathname();
-  const userContext = useUserContext();
-  const userRole = userContext?.user?.role ?? '';
+  const auth = useAuth();
+  const userRole = auth?.data?.role ?? '';
 
   function isActive(href?: string) {
     return (href && pathname === href) || pathname.startsWith(href + '/');

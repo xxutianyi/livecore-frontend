@@ -1,5 +1,5 @@
-import { Card, CardContent } from '@/components/shadcn/card';
-import { FieldDescription } from '@/components/shadcn/field';
+import { Card, CardContent } from '@/components/ui/card';
+import { FieldDescription } from '@/components/ui/field';
 import configs from '@/lib/configs';
 import { PropsWithChildren } from 'react';
 
@@ -13,11 +13,7 @@ export function AuthLayout({ children }: PropsWithChildren) {
               {children}
               <div className="relative hidden bg-muted md:block">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt="Image"
-                  src={configs.APP_LOGIN_IMAGE}
-                  className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-                />
+                <img alt="Image" src={configs.APP_LOGIN_IMAGE} className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
               </div>
             </CardContent>
           </Card>

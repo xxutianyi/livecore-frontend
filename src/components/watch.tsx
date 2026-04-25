@@ -1,14 +1,7 @@
-import { Badge } from '@/components/shadcn/badge';
-import { Button } from '@/components/shadcn/button';
-import {
-  Card,
-  CardAction,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/shadcn/card';
-import { Separator } from '@/components/shadcn/separator';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { LiveEvent, LiveMessage, LiveRoom } from '@/service/model';
 import { Play } from 'lucide-react';
@@ -88,9 +81,7 @@ export function EventItemCard({ event }: { event: LiveEvent }) {
 export function MessageItem({ message }: { message: LiveMessage }) {
   return (
     <div className="py-2">
-      <span className="whitespace-nowrap text-cyan-700 dark:text-cyan-500">
-        {message?.sender?.name}：&nbsp;
-      </span>
+      <span className="whitespace-nowrap text-cyan-700 dark:text-cyan-500">{message?.sender?.name}：&nbsp;</span>
       <span className="w-full break-all">{message?.content}</span>
     </div>
   );

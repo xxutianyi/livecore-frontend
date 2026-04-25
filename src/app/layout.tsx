@@ -1,9 +1,9 @@
+import { AuthProvider } from '@/components/provider/auth-provider';
 import { EchoProvider } from '@/components/provider/echo-provider';
 import { ProgressProvider } from '@/components/provider/progress-provider';
 import { ThemeProvider } from '@/components/provider/theme-provider';
-import { UserProvider } from '@/components/provider/user-provider';
-import { Toaster } from '@/components/shadcn/sonner';
-import { TooltipProvider } from '@/components/shadcn/tooltip';
+import { Toaster } from '@/components/ui/sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { fontMono, fontSans } from '@/fonts/font';
 import { cn } from '@/lib/utils';
 import { profileShow } from '@/service/api/auth';
@@ -28,19 +28,14 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       <body className="flex min-h-full flex-col">
         <NuqsAdapter>
           <ProgressProvider color="#9ae600" options={{ showSpinner: false }}>
-            <UserProvider initialUser={initialUser}>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
+            <AuthProvider initialUser={initialUser}>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                 <TooltipProvider>
                   <EchoProvider>{children}</EchoProvider>
                   <Toaster position="top-right" />
                 </TooltipProvider>
               </ThemeProvider>
-            </UserProvider>
+            </AuthProvider>
           </ProgressProvider>
         </NuqsAdapter>
       </body>

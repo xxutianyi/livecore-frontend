@@ -1,13 +1,13 @@
 'use client';
 
-import { DataTable, defineColumns } from '@/components/data-table';
-import { Button } from '@/components/shadcn/button';
+import { Button } from '@/components/ui/button';
 import { roomsResource } from '@/service/api/settings';
 import { LiveRoom } from '@/service/model';
+import { ColumnsDef, DataTable } from '@winglab/react-table';
 import Link from 'next/link';
 
 export function RoomsTable() {
-  const columns = defineColumns<LiveRoom>([
+  const columns = ColumnsDef<LiveRoom>([
     {
       dataKey: 'name',
       title: '名称',
@@ -30,5 +30,13 @@ export function RoomsTable() {
     },
   ]);
 
-  return <DataTable columns={columns} request={roomsResource.index} />;
+  return (
+    <DataTable
+      columns={columns}
+      request={roomsResource.index}
+      onSelectChange={console.log}
+      showSearchInput={true}
+      saveStateToQuery={true}
+    />
+  );
 }

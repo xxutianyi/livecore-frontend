@@ -3,9 +3,9 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
-import { Button } from '@/components/shadcn/button';
-import { Input } from '@/components/shadcn/input';
-import { Textarea } from '@/components/shadcn/textarea';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 
 function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
@@ -29,10 +29,8 @@ const inputGroupAddonVariants = cva(
       align: {
         'inline-start': 'order-first pl-3 has-[>button]:-ml-1 has-[>kbd]:-ml-1',
         'inline-end': 'order-last pr-3 has-[>button]:-mr-1 has-[>kbd]:-mr-1',
-        'block-start':
-          'order-first w-full justify-start px-3 pt-3 group-has-[>input]/input-group:pt-3.5 [.border-b]:pb-3.5',
-        'block-end':
-          'order-last w-full justify-start px-3 pb-3 group-has-[>input]/input-group:pb-3.5 [.border-t]:pt-3.5',
+        'block-start': 'order-first w-full justify-start px-3 pt-3 group-has-[>input]/input-group:pt-3.5 [.border-b]:pb-3.5',
+        'block-end': 'order-last w-full justify-start px-3 pb-3 group-has-[>input]/input-group:pb-3.5 [.border-t]:pt-3.5',
       },
     },
     defaultVariants: {
@@ -41,11 +39,7 @@ const inputGroupAddonVariants = cva(
   }
 );
 
-function InputGroupAddon({
-  className,
-  align = 'inline-start',
-  ...props
-}: React.ComponentProps<'div'> & VariantProps<typeof inputGroupAddonVariants>) {
+function InputGroupAddon({ className, align = 'inline-start', ...props }: React.ComponentProps<'div'> & VariantProps<typeof inputGroupAddonVariants>) {
   return (
     <div
       role="group"
@@ -83,26 +77,14 @@ function InputGroupButton({
   variant = 'ghost',
   size = 'xs',
   ...props
-}: Omit<React.ComponentProps<typeof Button>, 'size'> &
-  VariantProps<typeof inputGroupButtonVariants>) {
-  return (
-    <Button
-      type={type}
-      data-size={size}
-      variant={variant}
-      className={cn(inputGroupButtonVariants({ size }), className)}
-      {...props}
-    />
-  );
+}: Omit<React.ComponentProps<typeof Button>, 'size'> & VariantProps<typeof inputGroupButtonVariants>) {
+  return <Button type={type} data-size={size} variant={variant} className={cn(inputGroupButtonVariants({ size }), className)} {...props} />;
 }
 
 function InputGroupText({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
-      className={cn(
-        "flex items-center gap-2 text-sm text-muted-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
-        className
-      )}
+      className={cn("flex items-center gap-2 text-sm text-muted-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4", className)}
       {...props}
     />
   );
@@ -112,10 +94,7 @@ function InputGroupInput({ className, ...props }: React.ComponentProps<'input'>)
   return (
     <Input
       data-slot="input-group-control"
-      className={cn(
-        'flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 aria-invalid:ring-0 dark:bg-transparent',
-        className
-      )}
+      className={cn('flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 aria-invalid:ring-0 dark:bg-transparent', className)}
       {...props}
     />
   );
@@ -134,11 +113,4 @@ function InputGroupTextarea({ className, ...props }: React.ComponentProps<'texta
   );
 }
 
-export {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
-};
+export { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea };

@@ -1,8 +1,8 @@
-import { Playback } from '@/app/(website)/rooms/[room]/events/[event]/playback';
-import { Breadcrumb } from '@/components/winglab/layout/breadcrumb';
+import { Breadcrumb } from '@/components/breadcrumb';
 import { eventsShow, roomsShow } from '@/service/api/watch';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { Playback } from './playback';
 
 type Props = { params: Promise<{ room: string; event: string }> };
 

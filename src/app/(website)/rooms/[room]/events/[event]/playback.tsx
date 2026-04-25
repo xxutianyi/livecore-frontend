@@ -1,11 +1,11 @@
 'use client';
 
 import { VideoPlayer } from '@/components/player';
-import { Button } from '@/components/shadcn/button';
-import { Card, CardContent, CardHeader } from '@/components/shadcn/card';
-import { Empty, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/shadcn/empty';
-import { ScrollArea } from '@/components/shadcn/scroll-area';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/shadcn/tabs';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Empty, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { EventItemList, MessageList } from '@/components/watch';
 import useOnline from '@/hooks/use-online';
 import { eventsIndex, messagesIndex } from '@/service/api/watch';

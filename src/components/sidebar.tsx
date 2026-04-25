@@ -1,8 +1,4 @@
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/shadcn/collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -11,7 +7,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from '@/components/shadcn/sidebar';
+} from '@/components/ui/sidebar';
 import { RouteItemGroup } from '@/constant/routes';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';

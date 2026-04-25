@@ -1,13 +1,6 @@
 import { RefreshButton } from '@/app/(website)/rooms/[room]/_components/refresh';
-import { Button } from '@/components/shadcn/button';
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from '@/components/shadcn/empty';
+import { Button } from '@/components/ui/button';
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
 import { LiveRoom } from '@/service/model';
 import { Video } from 'lucide-react';
 import Link from 'next/link';
