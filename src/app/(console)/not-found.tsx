@@ -1,5 +1,3 @@
-'use client';
-
 import { PageContainer } from '@/components/container';
 import { Button } from '@/components/ui/button';
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
