@@ -1,6 +1,11 @@
 import { RoomCreate } from '@/app/(console)/settings/rooms/_components/form';
 import { PageContainer } from '@/components/container';
+import { Metadata } from 'next';
 import { RoomsTable } from './_components/table';
+
+export const metadata: Metadata = {
+  title: '直播间列表',
+};
 
 export default function RoomsPage() {
   return (
