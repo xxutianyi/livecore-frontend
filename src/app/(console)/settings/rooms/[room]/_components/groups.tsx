@@ -1,0 +1,80 @@
+'use client';
+
+import { Section } from '@/components/container';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Field, FieldGroup } from '@/components/ui/field';
+import { groupsApi } from '@/service/api/settings';
+import { LiveRoom, UserGroup } from '@/service/model';
+import { Form, MutiSelectField } from '@winglab/react-form';
+import { ColumnsDef, DataTable } from '@winglab/react-table';
+import Link from 'next/link';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import useSWR from 'swr';
+
+export function GroupIndex({ groups }: { groups?: UserGroup[] }) {
+  const columns = ColumnsDef<UserGroup>([
+    {
+      dataKey: 'name',
+      title: '名称',
+      sortable: true,
+    },
+    {
+      dataKey: 'users_count',
+      title: '用户数',
+      sortable: true,
+    },
+    {
+      index: 'action',
+      tableRowRender: (data) => (
+        <Button asChild variant="secondary">
+          <Link href={`/settings/users?groups=${data.id}`}>用户</Link>
+        </Button>
+      ),
+    },
+  ]);
+
+  return (
+    <Section title="授权用户组">
+      <DataTable data={groups} columns={columns} />
+    </Section>
+  );
+}
+
+export function GroupUpdate({ room }: { room: LiveRoom }) {
+  const [open, setOpen] = useState(false);
+  const { data: groups } = useSWR('/api/settings/groups', () => groupsApi.index());
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button>修改授权</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>授权用户组</DialogTitle>
+        </DialogHeader>
+        <Form
+          initialValues={{ groups: room.groups?.map((g) => g.id) }}
+          onSubmit={async (values) => {
+            setOpen(false);
+            toast.success('保存成功');
+          }}
+        >
+          <FieldGroup>
+            <MutiSelectField
+              name="group_ids"
+              label="选择分组"
+              options={groups ?? []}
+              optionsKey={{ label: 'name', value: 'id' }}
+            />
+            <Field>
+              <Button type="submit">保存</Button>
+            </Field>
+          </FieldGroup>
+        </Form>
+      </DialogContent>
+    </Dialog>
+  );
+}

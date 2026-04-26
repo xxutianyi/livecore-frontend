@@ -1,6 +1,6 @@
-import { RoomCreate } from '@/app/(console)/settings/rooms/form';
+import { RoomCreate } from '@/app/(console)/settings/rooms/_components/form';
 import { PageContainer } from '@/components/container';
-import { RoomsTable } from './table';
+import { RoomsTable } from './_components/table';
 
 export default function RoomsPage() {
   return (

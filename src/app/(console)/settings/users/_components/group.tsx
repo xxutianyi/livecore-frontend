@@ -10,14 +10,15 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Field, FieldGroup } from '@/components/ui/field';
-import { useOptions } from '@/hooks/use-options';
+import { groupsApi } from '@/service/api/settings';
 import { UserGroup } from '@/service/model';
 import { Form, TextField } from '@winglab/react-form';
 import { ColumnsDef, DataTable } from '@winglab/react-table';
 import { useState } from 'react';
+import useSWR from 'swr';
 
 export function GroupIndex() {
-  const options = useOptions();
+  const { data: groups } = useSWR('/api/settings/groups', () => groupsApi.index());
 
   const columns = ColumnsDef<UserGroup>([
     {
@@ -47,7 +48,7 @@ export function GroupIndex() {
           </DialogHeader>
           <GroupCreate />
         </div>
-        <DataTable columns={columns} data={options.groups} />
+        <DataTable columns={columns} data={groups} />
       </DialogContent>
     </Dialog>
   );

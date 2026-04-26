@@ -1,14 +1,4 @@
-import {
-  ChartBar,
-  HeartPulse,
-  Lock,
-  Play,
-  ShieldAlert,
-  TvMinimal,
-  TvMinimalPlay,
-  Users,
-  Video,
-} from 'lucide-react';
+import { ChartBar, HeartPulse, Lock, Play, ShieldAlert, TvMinimal, TvMinimalPlay, Users, Video } from 'lucide-react';
 import { FunctionComponent } from 'react';
 
 export type RouteItemGroup = {

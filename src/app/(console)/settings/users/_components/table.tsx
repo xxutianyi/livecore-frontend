@@ -2,15 +2,15 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { useOptions } from '@/hooks/use-options';
 import { formatDatetime } from '@/lib/utils';
-import { usersIndex } from '@/service/api/settings';
+import { groupsApi, usersApi } from '@/service/api/settings';
 import { User } from '@/service/model';
 import { ColumnsDef, DataTable } from '@winglab/react-table';
 import Link from 'next/link';
+import useSWR from 'swr';
 
 export function UsersTable() {
-  const options = useOptions();
+  const { data: groups } = useSWR('/api/settings/groups', () => groupsApi.index());
 
   const columns = ColumnsDef<User>([
     {
@@ -50,7 +50,7 @@ export function UsersTable() {
     {
       index: 'groups',
       title: '分组',
-      filters: options.groups?.map((value) => {
+      filters: groups?.map((value) => {
         return { label: value.name, value: value.id };
       }),
       tableRowRender: (data) => (
@@ -79,7 +79,7 @@ export function UsersTable() {
   return (
     <DataTable
       columns={columns}
-      request={usersIndex}
+      request={usersApi.index}
       onSelectChange={console.log}
       showSearchInput={true}
       saveStateToQuery={true}

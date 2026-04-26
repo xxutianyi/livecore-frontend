@@ -3,9 +3,9 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Field, FieldGroup } from '@/components/ui/field';
-import { roomsResource } from '@/service/api/settings';
-import { Form, TextareaField, TextField, UploadField } from '@winglab/react-form';
-import Cookies from 'js-cookie';
+import { UploadField } from '@/components/uploader';
+import { roomsApi } from '@/service/api/settings';
+import { Form, TextareaField, TextField } from '@winglab/react-form';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -23,26 +23,12 @@ export function RoomCreate() {
         </DialogHeader>
         <Form
           onSubmit={async (values) => {
-            await roomsResource.store(values!);
+            await roomsApi.store(values);
             toast.success('保存成功');
           }}
         >
           <FieldGroup>
-            <UploadField
-              name="cover"
-              label="封面"
-              accept={['image/*']}
-              preview={true}
-              server={{
-                url: `${process.env.NEXT_PUBLIC_BACKEND_URL}`,
-                headers: {
-                  'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN') ?? '',
-                },
-                patch: { url: '/api/filepond?patch=', withCredentials: true },
-                revert: { url: '/api/filepond', withCredentials: true },
-                process: { url: '/api/filepond', withCredentials: true },
-              }}
-            />
+            <UploadField name="cover" label="封面" accept={['image/*']} />
             <TextField name="name" label="名称" />
             <TextareaField name="description" label="简介" />
             <Field>

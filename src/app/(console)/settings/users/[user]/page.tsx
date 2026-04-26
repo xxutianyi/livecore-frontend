@@ -1,7 +1,7 @@
 import { Onlines } from '@/app/(console)/settings/users/[user]/_components/onlines';
 import { PageContainer } from '@/components/container';
 import { Separator } from '@/components/ui/separator';
-import { usersShow } from '@/service/api/settings';
+import { usersApi } from '@/service/api/settings';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { UserDetails } from './_components/details';
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function UserPage({ params }: Props) {
-  const user = await usersShow((await params).user);
+  const user = await usersApi.show((await params).user);
   if (!user) notFound();
 
   return (

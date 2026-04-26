@@ -40,12 +40,13 @@ async function unpack<TData>(request: ApiRequest<TData>) {
   try {
     return (await request).data?.data;
   } catch (error: any) {
+    console.log(error);
     if (typeof window !== 'undefined') {
-      if (![4001, 4002].includes(error.code)) {
-        toast.error(error.message);
-      }
       if (error.code === 4003 && error.errors) {
         throw error.errors;
+      }
+      if (![4001, 4002].includes(error.code)) {
+        toast.error(error.message);
       }
     }
     return undefined;

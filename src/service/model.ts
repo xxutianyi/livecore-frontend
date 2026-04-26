@@ -57,6 +57,7 @@ export interface LiveRoom extends Model {
   living?: LiveEvent;
   events?: LiveEvent[];
   events_count: number;
+  groups?: UserGroup[];
 }
 
 export interface LiveEvent extends Model {

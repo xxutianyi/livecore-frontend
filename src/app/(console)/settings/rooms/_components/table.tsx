@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { roomsResource } from '@/service/api/settings';
+import { roomsApi } from '@/service/api/settings';
 import { LiveRoom } from '@/service/model';
 import { ColumnsDef, DataTable } from '@winglab/react-table';
 import Link from 'next/link';
@@ -33,7 +33,7 @@ export function RoomsTable() {
   return (
     <DataTable
       columns={columns}
-      request={roomsResource.index}
+      request={roomsApi.index}
       onSelectChange={console.log}
       showSearchInput={true}
       saveStateToQuery={true}
