@@ -1,6 +1,6 @@
 import { Breadcrumb } from '@/components/breadcrumb';
 import { RoomCardList } from '@/components/watch';
-import { roomsIndex } from '@/service/api/watch';
+import { roomsIndex } from '@/service/requests';
 
 export default async function RoomsPage() {
   const rooms = await roomsIndex();

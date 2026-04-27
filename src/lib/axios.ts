@@ -47,6 +47,7 @@ async function unpack<TData>(request: ApiRequest<TData>) {
       }
       if (![4001, 4002].includes(error.code)) {
         toast.error(error.message);
+        throw error;
       }
     }
     return undefined;

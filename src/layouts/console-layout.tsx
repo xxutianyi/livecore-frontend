@@ -26,7 +26,7 @@ import {
 import routes from '@/constant/routes';
 import { useRoutes } from '@/hooks/use-routes';
 import configs from '@/lib/configs';
-import { logout } from '@/service/api/auth';
+import { logout } from '@/service/requests';
 import { ChevronsUpDownIcon, LogOutIcon, Settings, User } from 'lucide-react';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';

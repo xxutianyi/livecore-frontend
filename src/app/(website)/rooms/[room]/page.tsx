@@ -1,6 +1,6 @@
 import { Waiting } from '@/app/(website)/rooms/[room]/_components/waiting';
 import { Breadcrumb } from '@/components/breadcrumb';
-import { messagesIndex, roomsShow } from '@/service/api/watch';
+import { messagesIndex, roomsShow } from '@/service/requests';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Live } from './_components/live';

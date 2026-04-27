@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import configs from '@/lib/configs';
-import { logout } from '@/service/api/auth';
+import { logout } from '@/service/requests';
 import { LogIn, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

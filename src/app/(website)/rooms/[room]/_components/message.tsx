@@ -3,12 +3,11 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Field } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-
 import { MessageList } from '@/components/watch';
 import { useLive } from '@/hooks/use-live';
 import { useScroll } from '@/hooks/use-scroll';
-import { messagesStore } from '@/service/api/watch';
 import { LiveEvent, LiveMessage } from '@/service/model';
+import { messagesStore } from '@/service/requests';
 import { ArrowDown, Send, Users, Video } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -47,7 +46,11 @@ export function LiveMessages({ title, event, initMessages }: Props) {
       <CardContent className="absolute top-16 bottom-20 w-full border-y bg-muted/50">
         <ScrollArea className="-mr-4 h-full py-2 pr-4" viewportRef={viewportRef}>
           {!isAtBottom && (
-            <Button variant="outline" onClick={scrollToBottom} className="absolute right-2 opacity-50 hover:opacity-100">
+            <Button
+              variant="outline"
+              onClick={scrollToBottom}
+              className="absolute right-2 opacity-50 hover:opacity-100"
+            >
               <ArrowDown />
               最新评论
             </Button>
@@ -58,7 +61,12 @@ export function LiveMessages({ title, event, initMessages }: Props) {
       </CardContent>
       <CardFooter className="absolute bottom-0 h-20 w-full">
         <Field orientation="horizontal">
-          <Input aria-label="参与互动..." placeholder="参与互动..." value={message} onChange={(e) => setMessage(e.target.value)} />
+          <Input
+            aria-label="参与互动..."
+            placeholder="参与互动..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
           <Button onClick={handlePublish}>
             <Send />
             发送

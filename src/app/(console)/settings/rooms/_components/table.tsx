@@ -1,9 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { roomsApi } from '@/service/api/settings';
 import { LiveRoom } from '@/service/model';
-import { ColumnsDef, DataTable } from '@winglab/react-table';
+import { settingsRoomsIndex } from '@/service/requests';
+import { ColumnsDef, RequestTable } from '@winglab/react-table';
 import Link from 'next/link';
 
 export function RoomsTable() {
@@ -31,9 +31,9 @@ export function RoomsTable() {
   ]);
 
   return (
-    <DataTable
+    <RequestTable
       columns={columns}
-      request={roomsApi.index}
+      request={settingsRoomsIndex}
       onSelectChange={console.log}
       showSearchInput={true}
       saveStateToQuery={true}

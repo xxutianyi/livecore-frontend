@@ -1,7 +1,7 @@
 import { Breadcrumb } from '@/components/breadcrumb';
 import { Empty, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
 import { EventCardList } from '@/components/watch';
-import { eventsIndex, roomsShow } from '@/service/api/watch';
+import { eventsIndex, roomsShow } from '@/service/requests';
 import { Info } from 'lucide-react';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';

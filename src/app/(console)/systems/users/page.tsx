@@ -11,9 +11,8 @@ export const metadata: Metadata = {
 export default function UsersPage() {
   return (
     <PageContainer
-      title="观众列表"
-      subTitle="仅展示有管理权限的直播间的观众，如有疑问请联系管理员"
-      breadcrumb={[{ label: '观众管理', link: '/settings/users' }]}
+      title="管理员列表"
+      breadcrumb={[{ label: '管理员', link: '/settings/users' }]}
       actions={[<UserCreate key="user-create" />, <GroupIndex key="group-index" />]}
     >
       <UsersTable />

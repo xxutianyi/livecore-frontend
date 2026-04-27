@@ -1,7 +1,7 @@
 import { Breadcrumb } from '@/components/breadcrumb';
-import { eventsShow, roomsShow } from '@/service/api/watch';
+import { eventsShow, roomsShow } from '@/service/requests';
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { Playback } from './playback';
 
 type Props = { params: Promise<{ room: string; event: string }> };
@@ -17,7 +17,7 @@ export default async function EventPage({ params }: Props) {
   const event = await eventsShow((await params).event);
 
   if (!room || !event) {
-    redirect('/rooms');
+    notFound();
   }
 
   return (

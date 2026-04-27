@@ -4,14 +4,15 @@ import { Section } from '@/components/container';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Field, FieldGroup } from '@/components/ui/field';
-import { groupsApi } from '@/service/api/settings';
+import { useOptions } from '@/hooks/use-options';
 import { LiveRoom, UserGroup } from '@/service/model';
+import { settingsRoomsGroups } from '@/service/requests';
 import { Form, MutiSelectField } from '@winglab/react-form';
-import { ColumnsDef, DataTable } from '@winglab/react-table';
+import { ColumnsDef, Table } from '@winglab/react-table';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import useSWR from 'swr';
 
 export function GroupIndex({ groups }: { groups?: UserGroup[] }) {
   const columns = ColumnsDef<UserGroup>([
@@ -27,6 +28,7 @@ export function GroupIndex({ groups }: { groups?: UserGroup[] }) {
     },
     {
       index: 'action',
+      width: '20%',
       tableRowRender: (data) => (
         <Button asChild variant="secondary">
           <Link href={`/settings/users?groups=${data.id}`}>用户</Link>
@@ -37,14 +39,15 @@ export function GroupIndex({ groups }: { groups?: UserGroup[] }) {
 
   return (
     <Section title="授权用户组">
-      <DataTable data={groups} columns={columns} />
+      <Table data={groups} columns={columns} />
     </Section>
   );
 }
 
 export function GroupUpdate({ room }: { room: LiveRoom }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
-  const { data: groups } = useSWR('/api/settings/groups', () => groupsApi.index());
+  const { groups } = useOptions();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -58,8 +61,10 @@ export function GroupUpdate({ room }: { room: LiveRoom }) {
         <Form
           initialValues={{ groups: room.groups?.map((g) => g.id) }}
           onSubmit={async (values) => {
+            await settingsRoomsGroups(room.id, values);
             setOpen(false);
             toast.success('保存成功');
+            router.refresh();
           }}
         >
           <FieldGroup>

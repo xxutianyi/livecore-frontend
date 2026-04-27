@@ -1,11 +1,11 @@
-import { Onlines } from '@/app/(console)/settings/users/[user]/_components/onlines';
 import { PageContainer } from '@/components/container';
 import { Separator } from '@/components/ui/separator';
-import { usersApi } from '@/service/api/settings';
+import { audienceUsersApi } from '@/service/requests';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { UserDetails } from './_components/details';
 import { MessageTable } from './_components/message';
+import { Onlines } from './_components/onlines';
 
 type Props = { params: Promise<{ user: string }> };
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function UserPage({ params }: Props) {
-  const user = await usersApi.show((await params).user);
+  const user = await audienceUsersApi.show((await params).user);
   if (!user) notFound();
 
   return (
@@ -22,7 +22,6 @@ export default async function UserPage({ params }: Props) {
       title="观众信息"
       breadcrumb={[
         { label: '观众管理', link: '/settings/users' },
-        { label: '观众信息', link: `/settings/users/${user.id}` },
         { label: `${user.name}`, link: `/settings/users/${user.id}` },
       ]}
     >

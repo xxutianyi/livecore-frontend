@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { fontMono, fontSans } from '@/fonts/font';
 import { cn } from '@/lib/utils';
-import { profileShow } from '@/service/api/auth';
+import { profileShow } from '@/service/requests';
 import { Metadata } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { PropsWithChildren } from 'react';

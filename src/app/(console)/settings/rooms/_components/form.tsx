@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Field, FieldGroup } from '@/components/ui/field';
 import { UploadField } from '@/components/uploader';
-import { roomsApi } from '@/service/api/settings';
+import { settingsRoomsStore } from '@/service/requests';
 import { Form, TextareaField, TextField } from '@winglab/react-form';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -23,7 +23,7 @@ export function RoomCreate() {
         </DialogHeader>
         <Form
           onSubmit={async (values) => {
-            await roomsApi.store(values);
+            await settingsRoomsStore(values);
             toast.success('保存成功');
           }}
         >

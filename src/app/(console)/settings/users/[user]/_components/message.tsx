@@ -4,7 +4,7 @@ import { Section } from '@/components/container';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { formatDatetime } from '@/lib/utils';
 import { LiveMessage } from '@/service/model';
-import { ColumnsDef, DataTable } from '@winglab/react-table';
+import { ColumnsDef, Table } from '@winglab/react-table';
 
 export function MessageTable({ messages }: { messages?: LiveMessage[] }) {
   const columns = ColumnsDef<LiveMessage>([
@@ -42,7 +42,7 @@ export function MessageTable({ messages }: { messages?: LiveMessage[] }) {
 
   return (
     <Section title="评论记录">
-      <DataTable columns={columns} data={messages} />
+      <Table columns={columns} data={messages} />
     </Section>
   );
 }

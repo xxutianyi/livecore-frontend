@@ -1,6 +1,6 @@
 import { PageContainer } from '@/components/container';
 import { Separator } from '@/components/ui/separator';
-import { roomsApi } from '@/service/api/settings';
+import { settingsRoomsShow } from '@/service/requests';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { RoomDetails } from './_components/details';
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RoomPage({ params }: Props) {
-  const room = await roomsApi.show((await params).room);
+  const room = await settingsRoomsShow((await params).room);
   if (!room) notFound();
 
   return (

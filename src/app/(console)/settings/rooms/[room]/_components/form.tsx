@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Field, FieldGroup } from '@/components/ui/field';
 import { UploadField } from '@/components/uploader';
-import { coverUpdate, roomsApi } from '@/service/api/settings';
 import { LiveRoom } from '@/service/model';
+import { settingsRoomsCover, settingsRoomsUpdate } from '@/service/requests';
 import { Form, TextareaField, TextField } from '@winglab/react-form';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -27,7 +27,7 @@ export function RoomUpdate({ room }: { room: LiveRoom }) {
         <Form
           initialValues={room}
           onSubmit={async (values) => {
-            await roomsApi.update(room.id, values);
+            await settingsRoomsUpdate(room.id, values);
             setOpen(false);
             toast.success('保存成功');
             router.refresh();
@@ -61,7 +61,7 @@ export function CoverUpdate({ room }: { room: LiveRoom }) {
         </DialogHeader>
         <Form
           onSubmit={async (values) => {
-            await coverUpdate(room.id, values);
+            await settingsRoomsCover(room.id, values);
             setOpen(false);
             toast.success('保存成功');
             router.refresh();

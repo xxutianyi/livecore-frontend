@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { FieldGroup } from '@/components/ui/field';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { passwordUpdate, profileUpdate } from '@/service/api/auth';
+import { passwordUpdate, profileUpdate } from '@/service/requests';
 import { Form, PasswordField, TextField } from '@winglab/react-form';
 import { Lock, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';

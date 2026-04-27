@@ -62,7 +62,7 @@ const routes: RouteItemGroup[] = [
       {
         title: '管理员',
         icon: Lock,
-        href: '/system/users',
+        href: '/systems/users',
         roles: ['admin'],
       },
       {

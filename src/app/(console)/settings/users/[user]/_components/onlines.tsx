@@ -3,7 +3,7 @@
 import { Section } from '@/components/container';
 import { diffDatetime, formatDatetime } from '@/lib/utils';
 import { UserOnline } from '@/service/model';
-import { ColumnsDef, DataTable } from '@winglab/react-table';
+import { ColumnsDef, Table } from '@winglab/react-table';
 
 export function Onlines({ onlines }: { onlines?: UserOnline[] }) {
   const columns = ColumnsDef<UserOnline>([
@@ -38,7 +38,7 @@ export function Onlines({ onlines }: { onlines?: UserOnline[] }) {
 
   return (
     <Section title="观看记录">
-      <DataTable data={onlines} columns={columns} />
+      <Table data={onlines} columns={columns} />
     </Section>
   );
 }

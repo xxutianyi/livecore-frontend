@@ -1,4 +1,4 @@
-import { profileShow } from '@/service/api/auth';
+import { profileShow } from '@/service/requests';
 import { NextRequest, NextResponse, ProxyConfig } from 'next/server';
 
 export async function proxy(request: NextRequest) {

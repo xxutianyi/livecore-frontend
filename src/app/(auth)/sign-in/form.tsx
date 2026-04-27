@@ -3,7 +3,7 @@
 import { useAuth } from '@/components/provider/auth-provider';
 import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldGroup, FieldSeparator } from '@/components/ui/field';
-import { login } from '@/service/api/auth';
+import { login } from '@/service/requests';
 import { SiApple, SiWechat } from '@icons-pack/react-simple-icons';
 import { Form, PasswordField, TextField } from '@winglab/react-form';
 import Link from 'next/link';

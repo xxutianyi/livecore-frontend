@@ -1,7 +1,7 @@
 'use client';
 
-import { profileShow } from '@/service/api/auth';
 import { User } from '@/service/model';
+import { profileShow } from '@/service/requests';
 import { createContext, PropsWithChildren, useContext } from 'react';
 import useSWR from 'swr';
 

@@ -27,11 +27,11 @@ importers:
         specifier: ^1.12.13
         version: 1.12.13(@types/react@19.2.14)(react@19.2.4)
       '@winglab/react-form':
-        specifier: file:.yalc/@winglab/react-form
-        version: file:.yalc/@winglab/react-form(filepond-plugin-file-validate-type@1.2.9(filepond@4.32.12))(filepond-plugin-image-preview@4.6.12(filepond@4.32.12))(filepond@4.32.12)(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-filepond@7.1.3(filepond@4.32.12)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+        specifier: ^1.0.0
+        version: 1.0.0(filepond-plugin-file-validate-type@1.2.9(filepond@4.32.12))(filepond-plugin-image-preview@4.6.12(filepond@4.32.12))(filepond@4.32.12)(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-filepond@7.1.3(filepond@4.32.12)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       '@winglab/react-table':
-        specifier: ^1.0.2
-        version: 1.0.2(nuqs@2.8.9(next@16.2.4(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4))(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: ^1.0.4
+        version: 1.0.4(nuqs@2.8.9(next@16.2.4(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4))(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       axios:
         specifier: ^1.15.2
         version: 1.15.2
@@ -1857,8 +1857,8 @@ packages:
       '@types/react': ^18.0.0 || ^19.0.0
       react: ^18.0.0 || ^19.0.0
 
-  '@winglab/react-form@file:.yalc/@winglab/react-form':
-    resolution: {directory: .yalc/@winglab/react-form, type: directory}
+  '@winglab/react-form@1.0.0':
+    resolution: {integrity: sha512-DpIilRywXyfPUT3U5Z3X6ilFFesWg2KMXuJtUHq4kp0kS11K9c4agdi0ffp1UyU0FJfJtuuRQHTGUGgEBIMwcQ==}
     peerDependencies:
       filepond: ^4.32.12
       filepond-plugin-file-validate-type: ^1.2.9
@@ -1868,8 +1868,8 @@ packages:
       react-dom: ^19.2.0
       react-filepond: ^7.1.3
 
-  '@winglab/react-table@1.0.2':
-    resolution: {integrity: sha512-uB1griImEH3iEH/uIuA8G1SUndy8YR26lo9xTMrdAbq0XmF2sU+gTURiiph7yCTa/lHoKgZQWBTtG8F7sCw8Fw==}
+  '@winglab/react-table@1.0.4':
+    resolution: {integrity: sha512-V7bIm5zb7ONbNYBPpMHSQxH60ZA7E5Amndc6cMSiXR6m6CMnQxp47LAE4IbOyD6aoy/xr8h6Nd7srCGT/dgjPg==}
     peerDependencies:
       nuqs: ^2.8.9
       radix-ui: ^1.4.3
@@ -6088,7 +6088,7 @@ snapshots:
       media-captions: 1.0.4
       react: 19.2.4
 
-  '@winglab/react-form@file:.yalc/@winglab/react-form(filepond-plugin-file-validate-type@1.2.9(filepond@4.32.12))(filepond-plugin-image-preview@4.6.12(filepond@4.32.12))(filepond@4.32.12)(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-filepond@7.1.3(filepond@4.32.12)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
+  '@winglab/react-form@1.0.0(filepond-plugin-file-validate-type@1.2.9(filepond@4.32.12))(filepond-plugin-image-preview@4.6.12(filepond@4.32.12))(filepond@4.32.12)(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react-filepond@7.1.3(filepond@4.32.12)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)':
     dependencies:
       filepond: 4.32.12
       filepond-plugin-file-validate-type: 1.2.9(filepond@4.32.12)
@@ -6098,7 +6098,7 @@ snapshots:
       react-dom: 19.2.4(react@19.2.4)
       react-filepond: 7.1.3(filepond@4.32.12)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
-  '@winglab/react-table@1.0.2(nuqs@2.8.9(next@16.2.4(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4))(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@winglab/react-table@1.0.4(nuqs@2.8.9(next@16.2.4(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4))(radix-ui@1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       nuqs: 2.8.9(next@16.2.4(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
       radix-ui: 1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
